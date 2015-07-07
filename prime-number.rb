@@ -9,11 +9,17 @@ require 'prime'
 
 def number_property(number)
   result = []
-  result << Prime.prime?(number)
+  result << number.prime?
+  # ou result << Prime.prime?(number)
   result << number.even?
   result << ((number%10) == 0)
   result
 end
+
+# ou
+# def number_property(num)
+#   [num.prime? && num>0, num.even?,num%10==0]
+# end
 
 p number_property(7)
 p number_property(10)

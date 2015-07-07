@@ -1,0 +1,15 @@
+<DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+<%= @response_age %>
+<% if params[:age].empty? %>
+<h1>Please insert your age (this time for real!)</h1>
+<form method="GET" action="/ageresponse">
+  <input name="age">
+  <button>Submit</button>
+</form>
+<% end %>
+</body>
+</html>

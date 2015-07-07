@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 text-center">
+    <h1 class="text-uppercase">O meu super blog</h1>
+    <h2 class="small">Onde todas as ideias vão parar</h2>
+    <img src="http://www.vixenvarsity.com/wp-content/uploads/2014/02/24-Jack-Bauer.jpg" alt="This is me" class="img-circle">
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h2>The story so far</h2>
+    <ul class="list-unstyled">
+      <% @posts.each do |post| %>
+      <li><a href="show/<%= post.id %>"><%= post %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-2"></div>
+</div>

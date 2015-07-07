@@ -1,0 +1,12 @@
+<DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+  <ul>
+    <% @products.each do |product| %>
+    <li><%= product.name %> by <%= product.brand %> - <%= product.price %></li>
+    <% end %>
+  </ul> 
+</body>
+</html>
