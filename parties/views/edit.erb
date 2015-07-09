@@ -1,0 +1,12 @@
+<% if @party %>
+<h1 class="text-center">Update your party info here</h1>
+  <form method="post" action="/edit/<%= @party.id %>" id="edit">
+  <label for="party_info">Edit your Product Name here:</label>
+  <input name="name" type="text" value="<%= @party.name %>" class="form-control" id="party_info"><br>
+    <input type="submit" class="btn btn-info">
+  </form>
+ 
+<p><a href="/remove/<%= @party.id %>">Delete this party</a></p>
+<% else %>
+  <p>Party not found.</p>
+<% end %>

@@ -1,0 +1,23 @@
+<DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+  <h1>Product List</h1>
+  <p class="bg-warning">You have just removed <%= @product_deleted.name %></p>
+    <ul class="list-unstyled list-group">
+    <% @products.each do |product| %>
+    <li class="list-group-item"><a href="show/<%= product.id %>"><span class="text-capitalize"><%= product.name %></span> by <mark class="text-uppercase"><%= product.brand %></mark> <span class="badge"><%= product.price %></span></a> - <a href="/edit/<%= product.id %>" class="bg-info">Edit</a> - <a href="/remove/<%= product.id %>" class="bg-danger">Remove</a></li>
+    <% end %>
+  </ul>
+  <hr>
+  <h2> Want to add a new product? Feel free!</h2>
+  <form method="post" action="/new">
+  <label for="id0">ID:</label><input name="id" id="id0" value="13" class="form-control" ><br>
+  <label for="id1">Name:</label><input name="name" id="id1" placeholder="Name goes here" class="form-control" ><br>
+  <label for="id2">Price:</label><input name="price" id="id2" placeholder="Price goes here" class="form-control" ><br>
+  <label for="id3">Brand:</label><input name="brand" id="id3" placeholder="Brand goes here" class="form-control" ><br>
+  <button class="btn btn-success">Submit</button>
+</form>
+</body>
+</html>

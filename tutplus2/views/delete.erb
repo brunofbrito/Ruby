@@ -1,0 +1,10 @@
+<% if @note %>
+  <p>Queres mesmo apagar a nota <em>"<%= @note.content %>"</em>?</p>
+  <form action="/<%= @note.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Sim, apagar!">
+    <a href="/<%= @note.id %>">Cancelar</a>
+  </form>
+<% else %>
+  <p>Nota não encontrada.</p>
+<% end %>

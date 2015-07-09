@@ -1,0 +1,10 @@
+<h1>Add your own party here</h1>
+<form method="GET" action="/update/<%= @product.id %>">
+  <label for="to_replace_name">Edit your Product Name here:</label>
+  <input name="name" type="text" value="<%= @product.name %>" class="form-control" id="to_replace_name"><br>
+  <label for="to_replace_price">Edit your Product Price here:</label>
+  <input name="price" type="text" value="<%= @product.price %>" class="form-control" id="to_replace_price"><br>
+  <label for="to_replace_brand">Edit your Product Brand here:</label>
+  <input name="brand" type="text" value="<%= @product.brand %>" class="form-control" id="to_replace_brand"><br>
+  <button class="btn btn-info">Save all changes</button>
+</form>

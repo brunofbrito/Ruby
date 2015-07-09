@@ -1,0 +1,20 @@
+<h1 class="text-center">Hello Party People</h1>
+  <h3>Filter by:</h3>
+  <ul>
+    <li><a href="/?order=ascending">Sort Ascending</a></li>
+    <li><a href="/?order=descending">Sort Descending</a></li>
+  </ul>
+    <form method="post" action="/filter" id="filter">
+  <label for="filter">By Name or Description:</label>
+  <input name="filter" type="text" class="form-control" id="filter"><br>
+    <input type="submit" class="btn btn-info">
+  </form>
+  <hr>
+  <h3>Party List</h3>
+    <ul class="list-unstyled list-group">
+    <% @parties.each do |party| %>
+      <li><a href="show/<%= party.id %>"><%= party.name %> in <%= party.location %> - <%= party.date %></a> <a href="edit/<%= party.id %>"><span class="glyphicon glyphicon-pencil"></span></a> <a href="remove/<%= party.id %>"><span class="glyphicon glyphicon-remove"></span></a></li>
+    <% end %>
+  </ul>
+<hr>
+<a href="/create">Create new Party</a>
