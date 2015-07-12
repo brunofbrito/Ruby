@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'time'
 
 class Party
 
@@ -10,17 +11,30 @@ class Party
     @description = hash[:description]
     @location = hash[:location]
     @date = hash[:date]
+    @users = []
   end
 
   def change_name(name)
     @name = name
   end
+
+  # def add_user(email)
+  #   ...
+  # end
+
+  # def remove_user(email)
+  #   ...
+  # end
+
+  # def attending_users_count
+  #   ...
+  # end
 end
 
 parties = [
-  Party.new({ id: 0, name: "The freaks come out", description: "If you are a freak and you want to dance until the sun comes up, this is the place to be!", location: "Lisboa", date: "15-07-2014" }),
-  Party.new({ id: 1, name: "From Dusk till Dawn", description: "Are you looking for a sleepless night? Well, look no further!", location: "Porto", date: "15-07-2015" }),
-  Party.new({ id: 2, name: "Summer Beach Party 2015", description: "You like dancing in the sand, don't you?", location: "Faro", date: "15-09-2016" })
+  Party.new({ id: 0, name: "The freaks come out", description: "If you are a freak and you want to dance until the sun comes up, this is the place to be!", location: "Lisboa", date: "2014-07-15" }),
+  Party.new({ id: 1, name: "From Dusk till Dawn", description: "Are you looking for a sleepless night? Well, look no further!", location: "Porto", date: "2015-07-15" }),
+  Party.new({ id: 2, name: "Summer Beach Party 2015", description: "You like dancing in the sand, don't you?", location: "Faro", date: "2016-09-15" })
 ]
 
 get '/' do
@@ -29,7 +43,9 @@ get '/' do
   elsif params[:order] == "descending"
     @parties = parties.sort_by {|party| party.name}.reverse
   else
-    @parties = parties
+    @parties = parties.select do |party|
+      Time.parse(party.date) > Time.now
+    end
   end
   erb :index
 end
@@ -61,7 +77,7 @@ get '/create' do
 end
 
 post '/create' do
-  parties << Party.new({:id => parties.length, :name => params[:name], :description => params[:description], :location => params[:location]}) 
+  parties << Party.new({:id => parties.length, :name => params[:name], :description => params[:description], :location => params[:location], :date => params[:date]}) 
   @parties = parties
   redirect '/'
 end
