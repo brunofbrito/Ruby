@@ -8,6 +8,23 @@
       <li class="list-group-item"><span class="glyphicon glyphicon-calendar"> DATE:</span> <%= @party.date %></li>
     </ul>
     <hr>
-  <div class="col-md-2">
+    <h3 class="text-center">Event map</h2>
+    <div id="map-canvas"></div>
+    <hr>
+    <h2>RSVP</h2>
+    <form method="post" action="/add_user/<%= @party.id %>">
+      <label for="email">Yes I'm going, here's my email:</label>
+      <input name="email" type="text" class="form-control" id="email"><br>
+      <button class="btn btn-info">Sign me up!</button>
+    </form>
+    <hr>
+    <h2>Who's going?</h2>
+    <ul>
+    <% @party.users.each do |user| %>
+      <li><%= user %> <a class="glyphicon glyphicon-remove-circle" href="/remove_user/<%= @party.id %>/<%= user %>"></a></li>
+    <% end %>
+    </ul>
+    <p><%= @party.attending_users_count() %> users are going</p>
+   <div class="col-md-2">
   </div>
 </div>

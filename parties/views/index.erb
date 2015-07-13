@@ -13,7 +13,7 @@
   <h3>Party List</h3>
     <ul class="list-unstyled list-group">
     <% @parties.each do |party| %>
-      <li><a href="show/<%= party.id %>"><%= party.name %> in <%= party.location %> - <%= party.date %></a> <a href="edit/<%= party.id %>"><span class="glyphicon glyphicon-pencil"></span></a> <a href="remove/<%= party.id %>"><span class="glyphicon glyphicon-remove"></span></a></li>
+      <li><a href="show/<%= party.id %>"><%= party.name %> in <%= party.location %> - <%= party.date %> <mark>(<%= party.attending_users_count() %> people are going)</mark></a> <a href="edit/<%= party.id %>"><span class="glyphicon glyphicon-pencil"></span></a> <a href="remove/<%= party.id %>"><span class="glyphicon glyphicon-remove"></span></a></li>
     <% end %>
   </ul>
 <hr>

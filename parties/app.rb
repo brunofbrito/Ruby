@@ -1,9 +1,14 @@
+# Parties are cool. But now you need to know how many people are joining. Change the existing party class to allow you to insert and remove attending users.
+# Create a form on the party page that allows user to indicate that they're going by entering their email. Also, add a list of already going users and a button to allow remove a user.
+# Make sure the emails are unique.
+# Add a counter on the parties list page indicating the number of attending users.
+
 require 'sinatra'
 require 'time'
 
 class Party
 
-  attr_reader :id, :name, :description, :location, :date
+  attr_reader :id, :name, :description, :location, :date, :users
 
   def initialize(hash)
     @id = hash[:id]
@@ -18,17 +23,22 @@ class Party
     @name = name
   end
 
-  # def add_user(email)
-  #   ...
-  # end
+  def add_user(email)
+    @users << email
+  end
 
-  # def remove_user(email)
-  #   ...
-  # end
+  def remove_user(email)
+    @users.delete_if { |a| a == email }
+  end
 
-  # def attending_users_count
-  #   ...
-  # end
+  def attending_users_count
+    @users.size
+  end
+
+  def email_unique?(email)
+    @users.include?(email)
+  end
+
 end
 
 parties = [
@@ -93,6 +103,22 @@ post '/filter' do
     party.name.include?(params[:filter]) || party.description.include?(params[:filter])
   end
   erb :search_results
+end
+
+post '/add_user/:id' do
+    parties.each do |party|
+    party.id == params[:id]
+    party.add_user(params[:email])
+  end
+  redirect "/show/#{params[:id]}"
+end
+
+get '/remove_user/:id/:user' do
+  parties.each do |party|
+  party.id == params[:id]
+    party.remove_user(params[:user])
+  end
+  redirect "/show/#{params[:id]}"
 end
 
 # username = 'gabrielpoca'
